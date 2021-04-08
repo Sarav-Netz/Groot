@@ -693,16 +693,19 @@
         <?php endif; ?>
     </div>
 
-    <!-- EDIT TASK DIRECTLY -->
+    <!-- ADD TASK DIRECTLY -->
     <div class="container">
     <?php 
         if(isset($_GET['addTaskDirect'])):
-            $queryObj=new createDataQuery;
+            $queryDataObj=new createDataQuery;
             $dbObj=new dbConnection();
+            // $queryTaskObj=new createTaskQuery();
             $dbObj->connectDb();
-            $queryObj->selectAllUserQuery();
+            $queryDataObj->selectAllUserQuery();
+            $queryTask="SELECT DISTINCT `taskCategory` FROM usertask;";
             // var_dump($queryObj->myQuery);
-            $result=mysqli_query($dbObj->con,$queryObj->myQuery);
+            $resultData=mysqli_query($dbObj->con,$queryDataObj->myQuery);
+            $resultTask=mysqli_query($dbObj->con,$queryTask);
             include('dirctAddTask.php');
             // var_dump($result);
     ?>
@@ -710,8 +713,8 @@
             <label >Select User </label>
             <select class="form-control " name="directUserId">
                 <option>---select User---</option>
-                <?php while($row=$result->fetch_assoc()): ?>
-                    <option value="<?php echo $row['userId'] ?>"><?php echo "id ".$row['userId'].", Name ". $row['userName'] ?></option>
+                <?php while($dataRow=$resultData->fetch_assoc()): ?>
+                    <option value="<?php echo $dataRow['userId']; ?>"><?php echo "id ".$dataRow['userId'].", Name ". $dataRow['userName']; ?></option>
                 
                     <?php endwhile; ?>
             </select>
@@ -722,6 +725,18 @@
             <div class="form-group">
                 <label for="directTaskDetail">Task Detail</label>
                 <input type="text" class="form-control" name="directTaskDetail" id="directTaskDetail" placeholder="enter some detail of the task">
+            </div>
+            <label >Select Category</label>
+            <select class="form-control " name="directTaskCategory">
+                <option>---select Categories---</option>
+                <?php while($taskRow=$resultTask->fetch_assoc()): ?>
+                    <option value="<?php echo $TaskRow['taskCategory']; ?>"><?php echo $taskRow['taskCategory']; ?></option>
+                
+                    <?php endwhile; ?>
+            </select>
+            <div class="form-group">
+                <label for="directEntersTaskCategory">Task Detail</label>
+                <input type="text" class="form-control" name="directEntersTaskCategory" id="directEntersTaskCategory" placeholder="enter new category">
             </div>
             <button class="btn btn-primary" name="addDirectClick">Add This Task</button>
         </form>
@@ -1079,6 +1094,15 @@
                 include('filteredCompletedTask.php');
             }
         ?>
+    </div>
+
+    <!-- filter task on the basis of the categories -->
+    <div>
+    <?php
+        if(isset($_GET['taskCategory'])){
+            include('filterTaskOnCategories.php');
+        }
+    ?>
     </div>
 
     <!-- <<<<<<<<<<<<<<<< JAVASCRIPT PART >>>>>>>>>>>>>>>>>>>>>>>>>>  -->

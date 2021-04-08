@@ -82,8 +82,8 @@
         public $myQuery;
         private $tableName = 'usertask';
         //this method will add new user into our database
-        public function addTaskQuery($userId,$taskTitle,$taskDisc){
-            $this->myQuery="INSERT INTO `usermanagement`.`$this->tableName` (`userId`, `taskTitle`, `taskDisc`) VALUES ('$userId', '$taskTitle', '$taskDisc');";
+        public function addTaskQuery($userId,$taskTitle,$taskDisc,$taskCategory='office'){
+            $this->myQuery="INSERT INTO `usermanagement`.`$this->tableName` (`userId`, `taskTitle`, `taskDisc`,`taskCategory`) VALUES ('$userId', '$taskTitle', '$taskDisc', '$taskCategory');";
             // echo "i'm working Buddy";
             return $this->myQuery;
         }
