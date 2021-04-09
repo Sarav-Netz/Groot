@@ -1,7 +1,7 @@
 # FinallyFinalUser
 
 After so many attempts this user management system is working fine and if you want to try this 
-fiel or this repo please aleways open the admin.php file...
+file or this repo please aleways open the admin.php file...
 admin.php is the main file for our source and
 
 
