@@ -81,10 +81,10 @@
                     if(isset($_POST['registrationClick'])){
                         $registrationName=$_POST['registrationName'];
                         $registrationEmail=$_POST['registrationEmail'];
-                        $registrationPassword=$_POST['registrationPassword'];
-                        $registrationPassword=sha1('registrationPassword');
-                        $registrationRole=$_POST['registrationRole'];
-                        $registrationRole=strtolower($registrationRole);
+                        $registrationPassword=sha1($_POST['registrationPassword']);
+                        // $registrationPassword=sha1('registrationPassword');
+                        $registrationRole=strtolower($_POST['registrationRole']);
+                        // $registrationRole=strtolower($registrationRole);
                         $userValid='no';
                         $dbObj=new dbConnection();
                         $queryObj = new createDataQuery();
@@ -92,13 +92,14 @@
                         $dbObj->connectDb();
                         $queryObj = new createDataQuery();                        
                         $queryObj->addUserQuery($registrationName,$registrationEmail,$registrationRole,$registrationPassword,$userValid);
+                        // var_dump($queryObj->myQuery);
                         $result=mysqli_query($dbObj->con,$queryObj->myQuery);
                         if($result){
                             echo "
                             <div class='alert alert-success' role='alert'>
                             You are registered successfully! Wait for Your approval;
                             </div>";
-                        }elseif($table){
+                        }else{
                             echo "
                                     <div class='alert alert-danger' role='alert'>
                                     We are unable to register you currently!

@@ -96,13 +96,17 @@
                 $result=userChange::handleAnyQuery($dbObj->con,$queryObj->myQuery);
                 $row=$result->fetch_assoc();
             ?>
-                <div class="card">
-                    <h5 class="card-header"><?php echo $row['userName']; ?> Information</h5>
+                <div class="card" style="width: 28rem;">
+                    <div class="card-header">
+                        <img src="./uploaded/<?php echo $row['userImage']; ?>" class="card-img-top" style="    border-radius: 54%;width: auto;height: 124px;align-self: center;float: right;margin: auto;" alt="User image">
+                        <h4 style="    margin-bottom: 0.5rem;font-family: inherit;font-weight: 500;line-height: 5.2;color: inherit;"><?php echo $row['userName']; ?></h4>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">Your Email: <?php echo $row['userEmail'] ?></h5>
                         <p class="card-text">Your Role With Our company: <?php echo $row['userRole'] ?></p>
-                        <a href="staffInterface.php?editMe=true" class="btn btn-primary">Edit</a>
+                        <a href="staffInterface.php?editSelf=true" class="btn btn-primary">Edit</a>
                         <a href="staffInterface.php?updatePassword=true" class="btn btn-primary">Update PassWord</a>
+                        <a href="staffInterface.php?updateProfilePhoto=true" class="btn btn-primary">Edit Profile Picture</a>
                     </div>
                 </div>
             <?php endif; ?>
@@ -110,7 +114,7 @@
 
         <div>
         <!-- EDIT ME SECTION -->
-        <?php if(isset($_GET['editMe'])):
+        <?php if(isset($_GET['editSelf'])):
                 $userId=$_SESSION['userId'];
                 $dbObj=new dbConnection();
                 $queryObj=new createDataQuery();
@@ -197,6 +201,8 @@
                 
         </div>
 
+        <!-- update password -->
+
         <div class="container">
             <div>
                 <?php 
@@ -220,6 +226,24 @@
             <?php   endif; ?>
             </div>
         </div>
+
+
+        <!-- Update Profile image -->
+        <?php 
+        if(isset($_GET['updateProfilePhoto'])):
+            include('updateProfilePhoto.php');
+
+        ?>
+            <form action="" class="form" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                        <input type="hidden" class="form-control" name="profileImageUserId" value="<?php echo $_SESSION['userId'] ?>" id="profileImageUserId">
+                    </div>
+                    <div class="form-group">
+                        <input type="file" class="form-control" name="profileImage" id="profileImage">
+                    </div>
+                    <button class="btn btn-primary" name="updateImage">UPDATE</button>
+            </form>
+            <?php endif; ?>
 
         <div>
         <!-- ADD NEW TASK -->

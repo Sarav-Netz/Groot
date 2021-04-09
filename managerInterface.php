@@ -219,7 +219,7 @@
             ?>
                 <div class="card" style="width: 28rem;">
                     <div class="card-header">
-                        <img src="./uploaded/<?php echo $row['userImage']; ?>" class="card-img-top" style="    border-radius: 54%;width: auto;height: 124px;align-self: center;float: right;margin: auto;" alt="database image">
+                        <img src="./uploaded/<?php echo $row['userImage']; ?>" class="card-img-top" style="    border-radius: 54%;width: auto;height: 124px;align-self: center;float: right;margin: auto;" alt="user image">
                         <h4 style="    margin-bottom: 0.5rem;font-family: inherit;font-weight: 500;line-height: 5.2;color: inherit;"><?php echo $row['userName']; ?></h4>
                     </div>
                     <div class="card-body">
