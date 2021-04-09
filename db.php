@@ -56,7 +56,7 @@
         }
         #this method will help tp change the Profile Image of the users;
         public function updateProfileImage($userId,$profilePhoto){
-            $this->myQuery="UPDATE `usermanagement`.`workmate` SET `userImage`=$profilePhoto WHERE  `userId`=$userId;";
+            $this->myQuery="UPDATE `usermanagement`.`workmate` SET `userImage`= '$profilePhoto' WHERE  `userId`=$userId;";
         }
         #this will delete an end user from the database
         public function deleteQuery($userId){

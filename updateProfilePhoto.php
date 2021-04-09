@@ -29,20 +29,22 @@
                 if($action):
                     // echo "i'm in the action";
                     $queryObj->updateProfileImage($userId,$finalImgWithExt);
-                    $updatedResult=$queryObj->myQuery;
+                    // var_dump($queryObj->myQuery);
+                    $updatedResult=mysqli_query($dbObj->con,$queryObj->myQuery);
+                    // var_dump($updatedResult);
                     if($updatedResult): ?>
                         <div class="alert alert-success">
-                            Profile picture is updated successfully
+                            Profile picture is updated successfully.
                         </div>
                 <?php else: ?>
                     <div class="alert alert-danger">
-                        There is some technical issue please try after some time
+                        There is some technical issue please try after some time.
                     </div>
               <?php endif; ?>
                 
          <?php  else: ?>
                 <div class="alert alert-danger">
-                    file is too big in  size";
+                    file is too big in  size".
                 </div>
             
         <?php endif; ?>
@@ -50,7 +52,7 @@
 
         <?php else: ?>
             <div class="alert alert-danger">
-                only jpeg/jpg/png are allowed to upload
+                only jpeg/jpg/png are allowed to upload.
             </div>
         <?php endif; ?>
     <?php endif; ?>
