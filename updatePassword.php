@@ -1,10 +1,10 @@
 <?php
     if(isset($_POST['submitUpdatePassword'])){
         $userId=$_POST['updatingPassword'];
-        $password=$_POST['enterUpdatePassword'];
-        $confirmPassword=$_POST['confirmEnterUpdatePassword'];
-        $password=sha1($password);
-        $confirmPassword=sha1($password);
+        $password=sha1($_POST['enterUpdatePassword']);
+        $confirmPassword=sha1($_POST['confirmEnterUpdatePassword']);
+        // $password=sha1($password);
+        // $confirmPassword=sha1($password);
         $dbObj = new dbConnection();
         $dbObj->connectDb();
         $queryObj=new createDataQuery();
@@ -12,7 +12,7 @@
         $result1=mysqli_query($dbObj->con,$queryObj->myQuery);
         $dataRow=$result1->fetch_assoc();
         if($dataRow['userPassword']!=$password){
-            if($password==$confirmPassword){
+            if($password == $confirmPassword){
                 // $password=sha1($password);
                 $queryObj->updatePassword($userId,$password);
                 $result=mysqli_query($dbObj->con,$queryObj->myQuery);
