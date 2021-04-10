@@ -30,21 +30,3 @@
             </div>
         <?php endif; endif; ?>
         
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Task Addition</title>
-</head>
-<body>
-    <div class="container">
-    <form action="" method="POST">
-                <input type="hidden" class="form-control" name="userIdForTask" value="<?php //echo $userId; ?>" >
-                <label >Title for the Taks</label>
-                <input type="text" class="form-control" name="newTaskTitle" placeholder="Enter Title" required>
-                <label >Description for the Task</label>
-                <input type="text"  name="newTaskDisc" class="form-control" placeholder="enter Description" required>
-                <button  class="btn btn-primary" name="addTASK">Add Task</button>
-            </form>
-    </div>
-</body>
-</html> -->

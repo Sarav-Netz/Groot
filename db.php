@@ -131,5 +131,5 @@
         }
         
     }
-    // echo "<h3>Hey buddy!,,,I'm from database connectivity page and this page is working perfectly.</h3>"
+    // echo "<h3>Hey buddy!,,,I'm from database connectivity page and this page is working perfectluy.</h3>"
 ?>
